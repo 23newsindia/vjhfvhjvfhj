@@ -1,0 +1,170 @@
+/* Main carousel container */
+.abc-banner-carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+/* Carousel inner container */
+.abc-carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease;
+    will-change: transform;
+    padding: 0 8px; /* Souled Store style padding */
+    margin-left: -8px; /* Compensate for padding */
+}
+
+/* Individual slides */
+.abc-slide {
+    flex: 0 0 auto;
+    position: relative;
+    padding: 0 8px; /* Souled Store style gap */
+    box-sizing: border-box;
+    transition: opacity 0.3s ease;
+}
+
+.abc-slide-image {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    display: block;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+}
+
+.abc-slide-image.loaded {
+    opacity: 1;
+}
+
+/* Slide title */
+.abc-slide-title {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    color: white;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    z-index: 2;
+}
+
+/* Navigation arrows */
+.abc-carousel-prev,
+.abc-carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.abc-carousel-prev {
+    left: 15px;
+}
+
+.abc-carousel-next {
+    right: 15px;
+}
+
+.abc-banner-carousel:hover .abc-carousel-prev,
+.abc-banner-carousel:hover .abc-carousel-next {
+    opacity: 1;
+}
+
+.abc-carousel-prev svg,
+.abc-carousel-next svg {
+    fill: #333;
+    width: 24px;
+    height: 24px;
+}
+
+/* Dots navigation */
+.abc-carousel-dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.abc-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ccc;
+    border: none;
+    margin: 0 5px;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.abc-dot.active {
+    background: #333;
+}
+
+/* Fade-in effect for images */
+.abc-slide-image {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.abc-slide-image.loaded {
+    opacity: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .abc-carousel-inner {
+        padding: 0;
+        margin-left: 0;
+    }
+    
+    .abc-slide {
+        padding: 0;
+        flex: 0 0 100% !important;
+        width: 100% !important;
+    }
+    
+    .abc-carousel-prev,
+    .abc-carousel-next {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .abc-carousel-prev {
+        left: 5px;
+    }
+    
+    .abc-carousel-next {
+        right: 5px;
+    }
+}
+
+/* Animation for initial load */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.abc-banner-carousel {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+/* Image lazy loading */
+.abc-slide-image[loading="lazy"] {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.abc-slide-image[loading="lazy"].loaded {
+    opacity: 1;
+}
